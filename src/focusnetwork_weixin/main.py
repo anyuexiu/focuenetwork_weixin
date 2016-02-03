@@ -26,6 +26,10 @@ def main(message, session):
 def help(message, session):
     return 'help'
 
+@robot.key_click('ls')
+def ls(message, session):
+    count = session.get('ls', 0) + 1
+    return u'''历史推送 第%d页''' % (count,)
 
 @robot.unsubscribe
 def unsubscribe(message, session):
@@ -37,9 +41,9 @@ def click(message, session):
     return str(message.key)
 
 
-@robot.txt
-def txt(message, session):
-    return '''你输入的是: %s''' % (message.content)
+@robot.text
+def text(message, session):
+    return u'''你输入的是: %s''' % (message.content,)
 
 
 if __name__ == '__main__':
